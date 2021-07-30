@@ -1,6 +1,7 @@
 package com.roncoo.eshop.inventory.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -52,7 +53,9 @@ public class ProductInventoryServiceImpl implements ProductInventoryService {
         if (dataJSON != null && !"".equals(dataJSON)) {
             JSONObject dataJSONObject = JSONObject.parseObject(dataJSON);
             // 手动赋一个主键
-            dataJSONObject.put("id", "-1");
+            if (StringUtils.isEmpty(dataJSONObject.get("id").toString())) {
+                dataJSONObject.put("id", "-1");
+            }
             return JSONObject.parseObject(dataJSONObject.toJSONString(), ProductInventory.class);
         } else {
             return productInventoryMapper.findByProductId(productId);
