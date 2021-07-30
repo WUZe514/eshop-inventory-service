@@ -12,54 +12,65 @@ import com.roncoo.eshop.inventory.service.ProductInventoryService;
 @RequestMapping("/product-inventory")
 public class ProductInventoryController {
 
-	@Autowired
-	private ProductInventoryService productInventoryService;
-	
-	@RequestMapping("/add") 
-	@ResponseBody
-	public String add(ProductInventory productInventory) {
-		try {
-			productInventoryService.add(productInventory);
-		} catch (Exception e) {
-			e.printStackTrace(); 
-			return "error";
-		}
-		return "success";
-	}
-	
-	@RequestMapping("/update") 
-	@ResponseBody
-	public String update(ProductInventory productInventory) {
-		try {
-			productInventoryService.update(productInventory); 
-		} catch (Exception e) {
-			e.printStackTrace(); 
-			return "error";
-		}
-		return "success";
-	}
-	
-	@RequestMapping("/delete") 
-	@ResponseBody
-	public String delete(Long id) {
-		try {
-			productInventoryService.delete(id); 
-		} catch (Exception e) {
-			e.printStackTrace(); 
-			return "error";
-		}
-		return "success";
-	}
-	
-	@RequestMapping("/findById") 
-	@ResponseBody
-	public ProductInventory findById(Long id){
-		try {
-			return productInventoryService.findById(id);
-		} catch (Exception e) {
-			e.printStackTrace(); 
-		}
-		return new ProductInventory();
-	}
-	
+    @Autowired
+    private ProductInventoryService productInventoryService;
+
+    @RequestMapping("/add")
+    @ResponseBody
+    public String add(ProductInventory productInventory) {
+        try {
+            productInventoryService.add(productInventory);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "error";
+        }
+        return "success";
+    }
+
+    @RequestMapping("/update")
+    @ResponseBody
+    public String update(ProductInventory productInventory) {
+        try {
+            productInventoryService.update(productInventory);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "error";
+        }
+        return "success";
+    }
+
+    @RequestMapping("/delete")
+    @ResponseBody
+    public String delete(Long id) {
+        try {
+            productInventoryService.delete(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "error";
+        }
+        return "success";
+    }
+
+    @RequestMapping("/findById")
+    @ResponseBody
+    public ProductInventory findById(Long id) {
+        try {
+            return productInventoryService.findById(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new ProductInventory();
+    }
+
+    @RequestMapping("/findByProductId")
+    @ResponseBody
+    public ProductInventory findByProductId(Long productId) {
+        try {
+            return productInventoryService.findByProductId(productId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new ProductInventory();
+    }
+
 }
